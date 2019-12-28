@@ -27,36 +27,42 @@ public class ZuulService {
 		return restTemplate.getForEntity("http://authserver/authenticate", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String rideAdmin() {
-		LOGGER.info("all rides requested");
-		return restTemplate.getForEntity("http://rideserver/admin", String.class).getBody();
+	public String getUserCount() {
+		LOGGER.info("User Count requested");
+		return restTemplate.getForEntity("http://eventserver/getUserCount", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String rideDriver() {
-		LOGGER.info("driver rides requested");
-		return restTemplate.getForEntity("http://rideserver/driver", String.class).getBody();
+	public String addEvent() {
+		LOGGER.info("Add event requested");
+		return restTemplate.getForEntity("http://eventserver/addEvent", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String rideRider() {
-		LOGGER.info("rider rides requested");
-		return restTemplate.getForEntity("http://rideserver/rider", String.class).getBody();
+	public String getAllEvents() {
+		LOGGER.info("All events requested");
+		return restTemplate.getForEntity("http://eventserver/getAllEvents", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String driverUpdateRide() {
-		LOGGER.info("driver update ride requested");
-		return restTemplate.getForEntity("http://driverserver/updateride", String.class).getBody();
+	public String addUserForEvent() {
+		LOGGER.info("Add  user for a event requested");
+		return restTemplate.getForEntity("http://eventserver/addUserForEvent", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String riderAddRide() {
-		LOGGER.info("rider add ride requested");
-		return restTemplate.getForEntity("http://riderserver/addride", String.class).getBody();
+	public String getEventReport() {
+		LOGGER.info("Events report requested");
+		return restTemplate.getForEntity("http://eventserver/getEventReport", String.class).getBody();
 	}
 	@HystrixCommand(fallbackMethod = "failure")
-	public String riderCancelRide() {
-		LOGGER.info("rider cancel ride requested");
-		return restTemplate.getForEntity("http://riderserver/cancelride", String.class).getBody();
+	public String getUserReport() {
+		LOGGER.info("Users report requested");
+		return restTemplate.getForEntity("http://eventserver/getUserReport", String.class).getBody();
 	}
+	@HystrixCommand(fallbackMethod = "failure")
+	public String getEventsForUser() {
+		LOGGER.info("Events for a user requested");
+		return restTemplate.getForEntity("http://eventserver/getEventsForUser", String.class).getBody();
+	}
+	
 	public String failure() {
-		return "Service unavailble. Please try after sometime";
+		return "Service unavailble";
 	}
 }

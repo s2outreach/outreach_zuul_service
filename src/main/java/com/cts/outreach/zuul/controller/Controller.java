@@ -21,29 +21,33 @@ public class Controller {
 	public String authAuthenticate() {
 		return zuulService.authAuthenticate();
 	}
-	@GetMapping("rideserver/admin")
-	public String rideAdmin() {
-		return zuulService.rideAdmin();
+	@GetMapping("eventserver/getUserCount")
+	public String getUserCount() {
+		return zuulService.getUserCount();
 	}
-	@GetMapping("rideserver/driver")
-	public String rideDriver() {
-		return zuulService.rideDriver();
+	@GetMapping("eventserver/addEvent")
+	public String addEvent() {
+		return zuulService.addEvent();
 	}
-	@GetMapping("rideserver/rider")
-	public String rideRider() {
-		return zuulService.rideRider();
+	@GetMapping("eventserver/getAllEvents")
+	public String getAllEvents() {
+		return zuulService.getAllEvents();
 	}
-	@PostMapping("driverserver/updateride")
-	public String driverUpdateRide() {
-		return zuulService.driverUpdateRide();
+	@GetMapping("eventserver/addUserForEvent")
+	public String addUserForEvent() {
+		return zuulService.addUserForEvent();
 	}
-	@PostMapping("riderserver/addride")
-	public String riderAddRide() {
-		return zuulService.riderAddRide();
+	@GetMapping("eventserver/getEventReport")
+	public String getEventReport() {
+		return zuulService.getEventReport();
 	}
-	@PostMapping("riderserver/cancelride")
-	public String riderCancelRide() {
-		return zuulService.riderCancelRide();
+	@GetMapping("eventserver/getUserReport")
+	public String getUserReport() {
+		return zuulService.getUserReport();
+	}
+	@GetMapping("eventserver/getEventsForUser")
+	public String getEventsForUser() {
+		return zuulService.getEventsForUser();
 	}
 
 }
