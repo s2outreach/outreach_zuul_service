@@ -11,7 +11,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -24,10 +23,16 @@ import com.netflix.appinfo.AmazonInfo;
 @EnableZuulProxy
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-@EnableHystrix
+//@EnableHystrix
 public class OutreachZuulServiceApplication {
 	
 	private Logger LOGGER = LoggerFactory.getLogger(OutreachZuulServiceApplication.class);
+	
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(OutreachZuulServiceApplication.class, args);
@@ -48,11 +53,5 @@ public class OutreachZuulServiceApplication {
 	    LOGGER.info(info.get(AmazonInfo.MetaDataKey.publicHostname));
 	    return config;
 	   }
-	
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 
 }
