@@ -11,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -23,7 +24,6 @@ import com.netflix.appinfo.AmazonInfo;
 @EnableZuulProxy
 @EnableCircuitBreaker
 @EnableDiscoveryClient
-//@EnableHystrix
 public class OutreachZuulServiceApplication {
 	
 	private Logger LOGGER = LoggerFactory.getLogger(OutreachZuulServiceApplication.class);
@@ -44,7 +44,7 @@ public class OutreachZuulServiceApplication {
 	@Profile("aws")
 	public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
 	    EurekaInstanceConfigBean config = new EurekaInstanceConfigBean(inetUtils);
-	    AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka");
+	    AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("zuul");
 	    config.setHostname(info.get(AmazonInfo.MetaDataKey.publicHostname));
 	    config.setIpAddress(info.get(AmazonInfo.MetaDataKey.publicIpv4));
 	    config.setNonSecurePort(8080);

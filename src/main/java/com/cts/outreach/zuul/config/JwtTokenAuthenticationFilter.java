@@ -35,8 +35,6 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		
-		LOGGER.info("in jwttoken ");
-		LOGGER.info("in jwttoken ");
 		LOGGER.info("in jwttoken " + jwtConfig.getHeader());
 		String header = request.getHeader(jwtConfig.getHeader());
 		LOGGER.info("header in jwttoken " + header);
